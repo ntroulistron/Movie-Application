@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <button id="theme-toggle"><i class="fas fa-lightbulb"></i></button>
+            <h1>Movie Application</h1>
+            <div class="topnav">
+                <a href="index.html" id="home-link">Home</a>
+                <div class="dropdown">
+                    <button class="dropbtn">Genres</button>
+                    <div class="dropdown-content"></div>
+                </div>
+                <a href="contact.html">Contact</a>
+                <a href="about.html">About</a>
+            </div>
+            <div class="search-container">
+                <form id="search-form">
+                    <input type="text" id="search-input" placeholder="Search for a movie..." required>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <div id="movie-list"></div>
+    
+
+    <footer>
+        <p>© 2024 Aleksandros Bilelli. All rights reserved.</p>
+        <div>
+            <a href="https://www.facebook.com/profile.php?id=100009556807505" target="_blank" aria-label="Visit our Facebook page" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://github.com/ntroulistron" target="_blank" aria-label="Visit our Github page" class="social-icon"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/alekos.mpl/" target="_blank" aria-label="Visit our Instagram page" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+    
+    <script src="genre.js"></script>
+    <script src="script.js"></script>
+    <script src="lightmode.js"></script> 
+    <script>document.addEventListener('DOMContentLoaded', function() {
+        const themeToggle = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme') || 'dark'; // Assuming you use localStorage to save theme preference
+    
+        function updateIcon() {
+            themeToggle.innerHTML = (document.body.dataset.theme === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-lightbulb"></i>');
+        }
+    
+        // Set initial theme and icon
+        document.body.dataset.theme = currentTheme;
+        updateIcon();
+    
+        themeToggle.addEventListener('click', function() {
+            document.body.dataset.theme = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', document.body.dataset.theme); // Save the new theme preference
+            updateIcon();
+        });
+    });
+    
+    </script>
+    <script>document.addEventListener('DOMContentLoaded', function() {
+        const homeLink = document.getElementById('home-link');
+        homeLink.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent the default anchor click behavior
+            window.location.reload(true); // Force a reload of the page from the server
+        });
+    });
+    </script>    
+</body>
+</html>
+
+
